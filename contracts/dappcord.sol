@@ -5,8 +5,8 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract Dappcord is ERC721 {
     address private immutable i_owner;
-    uint256 totalChannels;
-    uint256 totalSupply;
+    uint256 public totalChannels;
+    uint256 public totalSupply;
 
 
     modifier onlyOwner() {
@@ -34,7 +34,7 @@ contract Dappcord is ERC721 {
 
     function mint(uint256 _id) public payable {
         require(_id != 0);
-        require(_id <= totalSupply);
+        require(_id <= totalChannels);
         require(msg.value >= channels[_id].cost);
         require(hasJoined[_id][msg.sender] == false);
 
